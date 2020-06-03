@@ -23,7 +23,7 @@ describe('UserView', () => {
         // arrange
         const { wrapper } = build()
         // assert
-        expect(wrapper.html()).toContain('Hello World')
+        expect(wrapper.html()).toContain('Corn Relocation And Pricing')
     })
 
 })
