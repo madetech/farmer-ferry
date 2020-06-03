@@ -3,15 +3,12 @@ import Ferry from '@/components/Ferry'
 
 const localVue = createLocalVue()
 
-describe('UserView', () => {
+describe('Ferry', () => {
     let state
 
     const build = () => {
         const wrapper = shallowMount(Ferry, {
-            localVue,
-            propsData: {
-                msg: 'Hello World'
-            }
+            localVue
         })
 
         return {
@@ -19,7 +16,7 @@ describe('UserView', () => {
         }
     }
 
-    it('renders the component', () => {
+    it('initial state', () => {
         // arrange
         const { wrapper } = build()
         // assert
