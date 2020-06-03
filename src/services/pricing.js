@@ -1,3 +1,17 @@
-function calculatePrices (nBags, nGeese, pricePerCrossing) {
-    return 125;
+export function calculatePrices (nCorn, nGeese, pricePerCrossing) {
+    let price = 0;
+
+    if (nCorn >= 0 && nGeese >= 0 && pricePerCrossing >= 1) {
+
+        if (nCorn + nGeese === 0) {
+            price = 0;
+        } else {
+            price = (((nCorn + nGeese) * 2) - 1) * pricePerCrossing;
+        }
+    
+        return { price: price};
+
+    } else {
+        return { price: undefined, error: "Please enter valid values"};
+    }
 }
