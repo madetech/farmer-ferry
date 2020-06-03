@@ -3,30 +3,45 @@
         <h1>Corn Relocation And Pricing</h1>
         <form id="corn-pricing">
             <p>
-                <label for="costPerBag">Cost per bag</label>
-                <input type="text" id="costPerBag" v-model="costPerBag">
+                <label for="costPerTrip">Cost per bag (in pence)</label>
+                <input type="text" id="costPerTrip" v-model="costPerTrip">
             </p>
             <p>
-                <label for="numBags">Number of bags</label>
-                <input type="text" id="numBags" v-model="numBags">
+                <label for="numBagsOfCorn">Number of bags of corn</label>
+                <input type="text" id="numBagsOfCorn" v-model="numBagsOfCorn">
             </p>
-            <p>Calculated cost: £{{ calculatedCost }}</p>
+            <p>
+                <label for="numGeese">Number of geese</label>
+                <input type="text" id="numGeese" v-model="numGeese">
+            </p>
+            <p>Calculated cost: {{ calculatedCost }}</p>
         </form>
     </div>
 </template>
 
 <script>
+    import { calculatePrices } from '../services/pricing.js';
+
     export default {
         name: 'Ferry',
         data: () => {
             return {
-                costPerBag: 25,
-                numBags: 1
+                costPerTrip: 25,
+                numBagsOfCorn: 0,
+                numGeese: 0
             }
         },
         computed: {
             calculatedCost: function () {
-                return ((this.costPerBag * this.numBags * 2) - this.costPerBag) / 100
+                const calculatedPrices = calculatePrices(
+                    parseInt(this.numBagsOfCorn, 10),
+                    parseInt(this.numGeese, 10),
+                    parseInt(this.costPerTrip, 10)
+                );
+                if (calculatedPrices.error) {
+                    return calculatedPrices.error;
+                }
+                return `£${(calculatedPrices.price / 100).toFixed(2)}`;
             }
         }
     }
@@ -34,6 +49,10 @@
 
 <style>
     #corn-pricing {
-        background-color: #fbec5d
+        padding: 10px;
+        background-color: #fbec5d;
+    }
+    label {
+        margin-right: 10px;
     }
 </style>
