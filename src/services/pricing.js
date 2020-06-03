@@ -3,7 +3,7 @@ export function calculatePrices (nCorn, nGeese, pricePerCrossing) {
 
     if (nCorn >= 0 && nGeese >= 0 && pricePerCrossing >= 1) {
 
-        if ((nGeese + nCorn) > 3 && (nCorn > 0 && nGeese > 0)) return { error: "Goose alert! Corn at risk!" }
+        if ((nGeese + nCorn) > 3 && (nCorn > 1 && nGeese > 1)) return { error: "Goose alert! Corn at risk!" }
 
         if (nCorn + nGeese === 0) {
             price = 0;

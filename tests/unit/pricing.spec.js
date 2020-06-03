@@ -37,4 +37,8 @@ describe('pricing', () => {
     it('2 corn 1 geese @ 25 = 125', () => {
         expect(calculatePrices(2, 1, 25)).toMatchObject( { price: 125 });
     })
+
+    it('5 corn 1 geese @ 25 = 275', () => {
+        expect(calculatePrices(5, 1, 25)).toMatchObject( { price: 275 });
+    })
 })
