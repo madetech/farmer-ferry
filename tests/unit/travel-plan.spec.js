@@ -12,7 +12,7 @@ describe('travel plan', () => {
         expect(generateTravelPlan( { corn: 0, geese: 0 } )).toMatchObject( { plan: [] });
     })
 
-    test('that a single goose returns a travel plan showing a single crossing with a goose', () => {
+    test('that 1 goose returns a travel plan showing one crossing with a goose', () => {
         expect(generateTravelPlan( { corn: 0, geese: 1 } )).toMatchObject( { plan: [ "goose" ] });
     })
 
@@ -20,7 +20,11 @@ describe('travel plan', () => {
         expect(generateTravelPlan( { corn: 0, geese: 2 } )).toMatchObject( { plan: [ "goose", "nothing", "goose" ] });
     })
 
-    test('that a single bag of corn returns a travel plan showing a single crossing with a bag of corn', () => {
+    test('that 5 geese returns a travel plan showing five crossings with a goose and four empty handed return journeys', () => {
+        expect(generateTravelPlan( { corn: 0, geese: 5 } )).toMatchObject( { plan: [ "goose", "nothing", "goose", "nothing", "goose" , "nothing", "goose" , "nothing", "goose" ] });
+    })
+
+    test('that 1 bag of corn returns a travel plan showing one crossing with a bag of corn', () => {
         expect(generateTravelPlan( { corn: 1, geese: 0 } )).toMatchObject( { plan: [ "corn" ] });
     })
 
