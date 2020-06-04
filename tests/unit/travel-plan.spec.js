@@ -21,6 +21,6 @@ describe('travel plan', () => {
     })
 
     test('that 2 bags of corn returns a travel plan showing two crossings with a bag of corn and one empty handed return journey', () => {
-        expect(generateTravelPlan( { corn: 1, geese: 0 } )).toMatchObject( { plan: [ "corn", "nothing", "corn" ] });
+        expect(generateTravelPlan( { corn: 2, geese: 0 } )).toMatchObject( { plan: [ "corn", "nothing", "corn" ] });
     })
 });
