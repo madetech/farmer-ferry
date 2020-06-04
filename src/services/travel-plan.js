@@ -1,5 +1,6 @@
 export function generateTravelPlan(commodities) {
     if (commodities.corn < 1 && commodities.geese < 1) return { plan: [] }
+    if (commodities.corn === 1 && commodities.geese === 1) return { plan: ["corn", "nothing", "goose"] }
     if (commodities.corn > 0) return { plan: commodityPlan("corn", commodities.corn) };
     if (commodities.geese > 0) return { plan: commodityPlan("goose", commodities.geese) };
 }
