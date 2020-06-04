@@ -15,12 +15,22 @@
                 <input type="text" id="numGeese" v-model="numGeese">
             </p>
             <p>Calculated cost: {{ calculatedCost }}</p>
+            <div v-if="travelPlan.isPossible">
+                <p>Travel plan:</p>
+                <ul>
+                    <li v-for="crossing in crossings" :key="crossing">
+                        {{ crossing }}
+                    </li>
+                </ul>
+            </div>
+            <p v-else>Cannot generate travel plan.</p>
         </form>
     </div>
 </template>
 
 <script>
-    import { calculatePrices } from '../services/pricing.js';
+    import {calculatePrices} from '../services/pricing.js';
+    import {generateTravelPlan} from "../services/travel-plan";
 
     export default {
         name: 'Ferry',
@@ -42,6 +52,15 @@
                     return calculatedPrices.error;
                 }
                 return `£${(calculatedPrices.price / 100).toFixed(2)}`;
+            },
+            travelPlan: function() {
+                return generateTravelPlan({
+                    corn: parseInt(this.numBagsOfCorn, 10),
+                    geese: parseInt(this.numGeese, 10)
+                });
+            },
+            crossings: function() {
+                return this.travelPlan.plan;
             }
         }
     }

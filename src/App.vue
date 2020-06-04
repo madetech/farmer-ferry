@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Ferry msg="Hello World"/>
+    <Ferry />
   </div>
 </template>
 
