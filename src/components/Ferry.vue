@@ -14,8 +14,8 @@
                 <label for="numGeese">Number of geese</label>
                 <input type="text" id="numGeese" v-model="numGeese">
             </p>
-            <p>Calculated cost: {{ calculatedCost }}</p>
             <div v-if="travelPlan.isPossible">
+                <p>Calculated cost: {{ calculatedCost }}</p>
                 <p>Travel plan:</p>
                 <ol>
                     <li v-for="(crossing, index) in travelPlanWithCrossings" :key="index">
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-    import {calculatePrices} from '../services/pricing.js';
+    import {calculateCrossingPrice} from '../services/pricing.js';
     import {generateTravelPlan} from "../services/travel-plan";
     import {generateCrossingDirections} from "../services/crossing-directions";
 
@@ -44,15 +44,11 @@
         },
         computed: {
             calculatedCost: function () {
-                const calculatedPrices = calculatePrices(
-                    parseInt(this.numBagsOfCorn, 10),
-                    parseInt(this.numGeese, 10),
+                const calculatedPrices = calculateCrossingPrice(
+                    this.travelPlan.plan.length,
                     parseInt(this.costPerTrip, 10)
                 );
-                if (calculatedPrices.error) {
-                    return calculatedPrices.error;
-                }
-                return `£${(calculatedPrices.price / 100).toFixed(2)}`;
+                return `£${(calculatedPrices / 100).toFixed(2)}`;
             },
             travelPlan: function() {
                 return generateTravelPlan({

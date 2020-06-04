@@ -1,4 +1,4 @@
-import { calculatePrices } from '@/services/pricing.js';
+import { calculatePrices, calculateCrossingPrice } from '@/services/pricing.js';
 
 describe('pricing', () => {
 
@@ -44,5 +44,16 @@ describe('pricing', () => {
 
     it('1 corn 5 geese @ 25 = 275', () => {
         expect(calculatePrices(1, 5, 25)).toMatchObject( { price: 275 });
+    })
+})
+
+describe('pricing', () => {
+
+    test('that 0 crossings costs 0p', () => {
+        expect(calculateCrossingPrice(0, 25)).toBe(0);
+    })
+
+    test('that 5 crossings costs 125p', () => {
+        expect(calculateCrossingPrice(5, 25)).toBe(125);
     })
 })

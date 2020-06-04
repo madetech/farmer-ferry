@@ -17,3 +17,7 @@ export function calculatePrices (nCorn, nGeese, pricePerCrossing) {
         return { price: undefined, error: "Please enter valid values"};
     }
 }
+
+export function calculateCrossingPrice (crossings, pricePerCrossing) {
+    return crossings * pricePerCrossing;
+}
