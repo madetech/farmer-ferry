@@ -1,12 +1,6 @@
 import { generateTravelPlan } from '@/services/travel-plan.js';
 
-/* Crossing entities:
-   - corn
-   - goose
-   - nothing
- */
-
-describe('travel plan', () => {
+describe('travel plan generation', () => {
 
     test('that no commodities to transport returns a travel plan showing no crossings', () => {
         expect(generateTravelPlan( { corn: 0, geese: 0 } )).toMatchObject( { plan: [] });
@@ -41,6 +35,21 @@ describe('travel plan', () => {
     })
 
     test('that 2 geese and 2 bags of corn returns a travel plan showing two crossings with a goose, two crossings with a bag of corn, and th empty handed return journey', () => {
-        expect(generateTravelPlan( { corn: 2, geese: 2 } )).toMatchObject( { plan: [], isPlanPossible: false  });
+        expect(generateTravelPlan( { corn: 2, geese: 2 } )).toMatchObject( { plan: [] });
+    })
+});
+
+describe('travel plan possibility', () => {
+
+    test('that no commodities to transport returns a travel plan showing that the plan is possible, if empty', () => {
+        expect(generateTravelPlan( { corn: 0, geese: 0 } )).toMatchObject( { isPossible: true });
+    })
+
+    test('that 1 geese and 1 bags of corn returns a travel plan showing that the plan is possible', () => {
+        expect(generateTravelPlan( { corn: 1, geese: 1 } )).toMatchObject( { isPossible: true });
+    })
+
+    test('that 2 geese and 2 bags of corn returns a travel plan showing that the plan is possible', () => {
+        expect(generateTravelPlan( { corn: 2, geese: 2 } )).toMatchObject( { isPossible: false });
     })
 });
