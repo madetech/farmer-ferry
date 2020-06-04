@@ -20,7 +20,7 @@ describe('Ferry', () => {
         // arrange
         const { wrapper } = build()
         // assert
-        expect(wrapper.html()).toContain('Corn Relocation And Pricing')
+        expect(wrapper.html()).toContain('Commodity Relocation And Pricing')
     })
 
 })

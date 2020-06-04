@@ -9,7 +9,7 @@ describe('crossing directions generation', () => {
 
     test('that 3 crossings returns directions', () => {
         const plan = ["corn", "nothing", "corn"];
-        expect(generateCrossingDirections(plan)).toMatchObject([
+        expect(generateCrossingDirections(plan)).toEqual([
             {
                 commodity: "corn",
                 direction: "outward"
@@ -27,7 +27,7 @@ describe('crossing directions generation', () => {
 
     test('that 4 crossings returns directions', () => {
         const plan = ["corn", "nothing", "corn", "nothing"];
-        expect(generateCrossingDirections(plan)).toMatchObject([
+        expect(generateCrossingDirections(plan)).toEqual([
             {
                 commodity: "corn",
                 direction: "outward"

@@ -1,39 +1,13 @@
 export function generateCrossingDirections(plan) {
-    if(plan.length ===3) {
-        return [
-            {
-                commodity: "corn",
-                direction: "outward"
-            },
-            {
-                commodity: "nothing",
-                direction: "return"
-            },
-            {
-                commodity: "corn",
-                direction: "outward"
-            }
-        ]
+    function isOdd(index) {
+        return index % 2 === 0;
     }
-    if(plan.length === 4) {
-        return [
-            {
-                commodity: "corn",
-                direction: "outward"
-            },
-            {
-                commodity: "nothing",
-                direction: "return"
-            },
-            {
-                commodity: "corn",
-                direction: "outward"
-            },
-            {
-                commodity: "nothing",
-                direction: "return"
-            }
-        ]
-    }
-    return [];
+
+    return plan.map((commodity, index) => {
+        return {
+            commodity,
+            direction: isOdd(index) ? "outward" : "return"
+        }
+    });
+
 }
