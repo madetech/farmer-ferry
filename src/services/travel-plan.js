@@ -1,9 +1,8 @@
 export function generateTravelPlan(commodities) {
+    if (notPossible(commodities)) return { plan: [], isPossible: false }
+    
     if (commodities.corn < 1 && commodities.geese < 1) return { plan: [], isPossible: true  }
     if (commodities.corn === 1 && commodities.geese === 1) return { plan: ["corn", "nothing", "goose"], isPossible: true }
-    if (commodities.corn === 1 && commodities.geese === 4) return { plan: [], isPossible: false }
-    if (commodities.corn === 4 && commodities.geese === 1) return { plan: [], isPossible: false }
-    if (commodities.corn > 1 && commodities.geese > 1) return { plan: [], isPossible: false }
     if (commodities.corn > 0) return { plan: commodityPlan("corn", commodities.corn), isPossible: true };
     if (commodities.geese > 0) return { plan: commodityPlan("goose", commodities.geese), isPossible: true };
 }
@@ -19,4 +18,8 @@ function commodityPlan(commodity, count) {
     if (plan.length > 1) plan.pop();
 
     return plan;
+}
+
+function notPossible(commodities) {
+    return ((commodities.corn > 0 && commodities.geese > 1) || (commodities.corn > 1 && commodities.geese > 0));
 }
