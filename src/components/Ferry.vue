@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="container">
         <h1>Commodity Relocation And Pricing</h1>
         <form id="corn-pricing">
             <p>
@@ -17,11 +17,11 @@
             <p>Calculated cost: {{ calculatedCost }}</p>
             <div v-if="travelPlan.isPossible">
                 <p>Travel plan:</p>
-                <ul>
-                    <li v-for="crossing in crossings" :key="crossing">
-                        {{ crossing }}
+                <ol>
+                    <li v-for="(crossing, index) in travelPlanWithCrossings" :key="index">
+                        {{ crossing.direction }}: {{ crossing.commodity }}
                     </li>
-                </ul>
+                </ol>
             </div>
             <p v-else>Cannot generate travel plan.</p>
         </form>
@@ -31,6 +31,7 @@
 <script>
     import {calculatePrices} from '../services/pricing.js';
     import {generateTravelPlan} from "../services/travel-plan";
+    import {generateCrossingDirections} from "../services/crossing-directions";
 
     export default {
         name: 'Ferry',
@@ -59,14 +60,17 @@
                     geese: parseInt(this.numGeese, 10)
                 });
             },
-            crossings: function() {
-                return this.travelPlan.plan;
+            travelPlanWithCrossings: function() {
+                return generateCrossingDirections(this.travelPlan.plan);
             }
         }
     }
 </script>
 
 <style>
+    #container {
+        text-align: left;
+    }
     #corn-pricing {
         padding: 10px;
         background-color: #fbec5d;
