@@ -1,8 +1,10 @@
 export function generateTravelPlan(commodities) {
     if (commodities.corn < 1 && commodities.geese < 1) return { plan: []}
     if (commodities.corn > 0) return { plan: cornPlan(commodities.corn) };
-
-    return { plan: [ "goose" ] };
+    if (commodities.geese > 0) {
+        if (commodities.geese === 2) return { plan: ["goose", "nothing", "goose"] };
+        return {plan: ["goose"]};
+    }
 }
 
 function cornPlan(count) {
