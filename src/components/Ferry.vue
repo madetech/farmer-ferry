@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Corn Relocation And Pricing</h1>
+        <h1>Commodity Relocation And Pricing</h1>
         <form id="corn-pricing">
             <p>
                 <label for="costPerTrip">Cost per bag (in pence)</label>
