@@ -60,4 +60,8 @@ describe('travel plan possibility', () => {
     test('that 2 geese and 2 bags of corn returns a travel plan showing that the plan is possible', () => {
         expect(generateTravelPlan( { corn: 2, geese: 2 } )).toMatchObject( { isPossible: false });
     })
+
+    test('that 4 geese and 4 bags of corn returns a travel plan showing that the plan is possible', () => {
+        expect(generateTravelPlan( { corn: 4, geese: 4 } )).toMatchObject( { isPossible: false });
+    })
 });
