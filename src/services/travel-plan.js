@@ -1,17 +1,14 @@
 export function generateTravelPlan(commodities) {
-    if (commodities.corn < 1 && commodities.geese < 1) return { plan: []}
-    if (commodities.corn > 0) return { plan: cornPlan(commodities.corn) };
-    if (commodities.geese > 0) {
-        if (commodities.geese === 2) return { plan: ["goose", "nothing", "goose"] };
-        return {plan: ["goose"]};
-    }
+    if (commodities.corn < 1 && commodities.geese < 1) return { plan: [] }
+    if (commodities.corn > 0) return { plan: commodityPlan("corn", commodities.corn) };
+    if (commodities.geese > 0) return { plan: commodityPlan("goose", commodities.geese) };
 }
 
-function cornPlan(count) {
+function commodityPlan(commodity, count) {
     let plan = [];
 
     for (let i = 0; i < count; i++) {
-        plan.push("corn");
+        plan.push(commodity);
         plan.push("nothing");
     }
 
