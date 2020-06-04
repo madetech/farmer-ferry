@@ -24,4 +24,26 @@ describe('crossing directions generation', () => {
             }
         ]);
     })
+
+    test('that 4 crossings returns directions', () => {
+        const plan = ["corn", "nothing", "corn", "nothing"];
+        expect(generateCrossingDirections(plan)).toMatchObject([
+            {
+                commodity: "corn",
+                direction: "outward"
+            },
+            {
+                commodity: "nothing",
+                direction: "return"
+            },
+            {
+                commodity: "corn",
+                direction: "outward"
+            },
+            {
+                commodity: "nothing",
+                direction: "return"
+            }
+        ]);
+    })
 });
