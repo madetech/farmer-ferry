@@ -47,9 +47,8 @@ describe('travel plan generation', () => {
     })
 });
 
-describe('travel plan possibility', () => {
+describe('travel plans - possible', () => {
 
-    // Possible examples...
     test('that no commodities to transport returns a travel plan showing that the plan is possible, if empty', () => {
         expect(generateTravelPlan( { corn: 0, geese: 0 } )).toMatchObject( { isPossible: true });
     })
@@ -74,20 +73,35 @@ describe('travel plan possibility', () => {
         expect(generateTravelPlan( { corn: 2, geese: 1 } )).toMatchObject( { isPossible: true });
     })
 
-    // Not possible examples...
-    test('that 2 geese and 2 bags of corn returns a travel plan showing that the plan is possible', () => {
+    test('that 1 goose and 1 bag of corn and 1 fox returns a travel plan showing that the plan is possible', () => {
+        expect(generateTravelPlan( { corn: 1, geese: 1, foxes: 1} )).toMatchObject( { isPossible: true });
+    })
+    
+})
+
+describe('travel plans - not possible', () => {
+
+    test('that 2 geese and 2 bags of corn returns a travel plan showing that the plan is not possible', () => {
         expect(generateTravelPlan( { corn: 2, geese: 2 } )).toMatchObject( { isPossible: false });
     })
 
-    test('that 4 geese and 4 bags of corn returns a travel plan showing that the plan is possible', () => {
+    test('that 4 geese and 4 bags of corn returns a travel plan showing that the plan is not possible', () => {
         expect(generateTravelPlan( { corn: 4, geese: 4 } )).toMatchObject( { isPossible: false });
     })
 
-    test('that 4 geese and 1 bag of corn returns a travel plan showing that the plan is possible', () => {
+    test('that 4 geese and 1 bag of corn returns a travel plan showing that the plan is not possible', () => {
         expect(generateTravelPlan( { corn: 1, geese: 4 } )).toMatchObject( { isPossible: false });
     })
 
-    test('that 1 goose and 4 bag of corn returns a travel plan showing that the plan is possible', () => {
+    test('that 1 goose and 4 bag of corn returns a travel plan showing that the plan is not possible', () => {
         expect(generateTravelPlan( { corn: 4, geese: 1 } )).toMatchObject( { isPossible: false });
+    })
+
+    test('that 1 goose and 1 bag of corn and 4 foxes returns a travel plan showing that the plan is not possible', () => {
+        expect(generateTravelPlan( { corn: 1, geese: 1, foxes: 5} )).toMatchObject( { isPossible: false });
+    })
+
+    test('that 5 geese and 1 fox returns a travel plan showing that the plan is not possible', () => {
+        expect(generateTravelPlan( { corn: 0, geese: 5, foxes: 1} )).toMatchObject( { isPossible: false });
     })
 });
